@@ -30,10 +30,18 @@ public class Drawing {
      */
     public void draw(String format, String filename) {
         // TODO: Do you notice any issues here?
+        /* The issue here is that the draw method 
+           shouldn't need to know about specific
+           writer types. One way to refactor this would be to pass an object
+           format that knows how to create its own write */ 
         if (format.equals("jpeg")) {
             try (Writer writer = new JPEGWriter(filename + ".jpeg")) {
                 for (Shape shape : this.shapes) {
                     // TODO: What is the issue of the behavior here?
+                    /* One way to fix this isssue is by 
+                       by not having line in the draw Class in Drawing, but
+                       rather it should be inside the Shape class. With this it
+                       would eliminate the need of Drawing to have this data  */
                     Line[] lines = shape.toLines();
                     shape.draw(writer, lines);
                 }

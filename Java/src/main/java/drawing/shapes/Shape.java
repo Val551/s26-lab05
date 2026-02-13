@@ -27,6 +27,9 @@ public interface Shape {
         try {
             for (Line line : lines) {
                 // TODO: what is the purpose of the code there?
+                // The problem here is that we are using instanceof to check the type of writer,
+                // Instead, the Writer interface should
+                // define a write(Line line) method so each writer handles its own format.
                 if (writer instanceof JPEGWriter) {
                     writer.write(line.toJPEG());
                 } else if (writer instanceof PNGWriter) {
